@@ -6,11 +6,11 @@ import styles from './ContactForm.module.css';
 export default function ContactForm ({ onAddContact }) {
   const validationSchema = Yup.object({
     name: Yup.string()
-      .min(3, 'Мінімум 3 символи')
-      .max(50, 'Максимум 50 символів')
-      .required('Обов’язкове поле'),
+      .min(3, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required!'),
     number: Yup.string()
-      .matches(/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/, 'Формат: 123-45-67')
+      .matches(/^[0-9]{3}-[0-9]{2}-[0-9]{2}$/, 'Format: 123-45-67')
       .required('Обов’язкове поле'),
   });
 
@@ -30,14 +30,14 @@ export default function ContactForm ({ onAddContact }) {
     >
       <Form className={styles.form}>
         <label htmlFor="name">Name</label>
-        <Field name="name" />
-        <ErrorMessage name="name" component="div" className={styles.error} />
+        <Field className={styles.input} name="name" />
+        <ErrorMessage styleName={styles.error} name="name" component="div" className={styles.error} />
 
         <label htmlFor="number">Number</label>
-        <Field name="number" />
-        <ErrorMessage name="number" component="div" className={styles.error} />
+        <Field className={styles.input} name="number" />
+        <ErrorMessage styleName={styles.error} name="number" component="div" className={styles.error} />
 
-        <button type="submit">Add Contact</button>
+        <button className={styles.button} type="submit">Add Contact</button>
       </Form>
     </Formik>
   );
